@@ -1,0 +1,95 @@
+﻿
+@model IEnumerable<Product>
+
+
+
+<section>
+    <header class="header">
+        <div class="">
+
+            <div class="rowabdo">
+                <div class="col-2">
+                    <h1>Give Your Yourself <br> A New Style</h1>
+                    <p class="nouh">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Reru <br> quae ullam fugit laboriosam, voluptatum iure?</p>
+                    <a href="#abdo" class="btn abdo">Explore Now &#8594;</a>
+                </div>
+                <div class="col-2">
+                    <img src="/images/image1.png" alt="">
+                </div>
+            </div>
+        </div>
+    </header>
+</section>
+
+
+                <!-- featured categories -->
+                <section>
+  <div class="categories" >
+    <div class="small-container">
+        <div class="row">
+            <div class="col-3abdo">
+                <img src="/images/category-1.jpg" alt="">
+            </div>
+            <div class="col-3abdo">
+                <img src="/images/category-2.jpg" alt="">
+            </div>
+            <div class="col-3abdo">
+                <img src="/images/category-3.jpg" alt="">
+            </div>
+        </div>
+    </div>
+  </div>
+</section>
+
+
+
+<section id="abdo" >
+<div class="row pb-3">
+    <h2 class="title text-center">featured Products</h2>
+    @foreach (var product in Model)
+    {
+        <div class="col-lg-3 col-sm-6">
+            <div class="row p-2">
+                <div class="col-12 p-1">
+                    <div class="card border-0 p-3 shadow  border-top border-5 rounded">
+                        @if (product.productImages != null && product.productImages.Count() > 0)
+                        {
+                            <img src="@product.productImages.FirstOrDefault().ImageUrl" class="card-img-top rounded" />
+                        }
+                        else
+                        {
+                            <img src="https://placehold.co/500x600/png" class="card-img-top rounded" />
+                        }
+
+
+                        <div class="card-body pb-0">
+                            <div class="pl-1">
+                                <p class="card-title h5 text-dark opacity-75 text-uppercase text-center">@product.Title</p>
+                                <p class="card-title text-warning text-center"> <b>@product.Category.Name</b></p>
+                                <p class="card-title text-danger text-center"> <b>@product.type.Name</b></p>
+                            </div>
+                            <div class="pl-1">
+                                <p class="text-dark text-opacity-75 text-center">
+                                    Price
+                                    <span>
+                                        @product.Price.ToString("c")
+                                    </span>
+                                </p>
+                            </div>
+                        </div>
+                        <div>
+                            <a asp-action="Details"
+                           asp-route-productid="@product.Id"
+                           class="btn btn-success bg-gradient border-0 form-control">
+                                More  Details
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+</div>
+</section>
+
+
